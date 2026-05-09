@@ -1,127 +1,432 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
+
 <head>
-  <title>Novyble</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Novyble — Production Grade BLE Platform</title>
 
   <style>
-    body {
+
+    * {
       margin: 0;
-      font-family: -apple-system, system-ui;
-      background: #0b1220;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #050816;
       color: white;
-      text-align: center;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     .container {
-      max-width: 900px;
+      width: 100%;
+      max-width: 1200px;
       margin: auto;
-      padding: 80px 20px;
+      padding: 0 24px;
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    /* HERO */
+
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+      background:
+      radial-gradient(circle at top, rgba(37,99,235,0.35), transparent 45%),
+      #050816;
     }
 
-    p {
-      color: #9ca3af;
-      font-size: 18px;
-      line-height: 1.6;
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.12);
+      border: 1px solid rgba(37,99,235,0.4);
+      color: #60a5fa;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: auto;
+      color: #94a3b8;
+      font-size: 22px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      margin-top: 40px;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 14px 24px;
-      background: #2563eb;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 500;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      margin: 8px;
+      transition: 0.25s;
     }
 
-    .section {
-      margin-top: 80px;
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      border: 1px solid #334155;
+      color: white;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-size: 42px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: #94a3b8;
+      text-align: center;
+      max-width: 760px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* GRID */
+
+    .grid {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: #111827;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      padding: 28px;
+      transition: 0.3s;
     }
 
-    footer {
-      margin-top: 80px;
-      padding: 20px;
-      color: #6b7280;
-      font-size: 14px;
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #2563eb;
     }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    /* VIDEO */
+
+    .video-wrapper {
+      margin-top: 50px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid #1e293b;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 30px;
+      background: #0f172a;
+      border-radius: 20px;
+      border: 1px solid #1e293b;
+    }
+
+    .stat h2 {
+      font-size: 42px;
+      color: #3b82f6;
+      margin-bottom: 12px;
+    }
+
+    .stat p {
+      color: #94a3b8;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 40px 20px;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      color: #64748b;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 768px) {
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+    }
+
   </style>
 
 </head>
 
 <body>
 
+  <!-- HERO -->
+
+  <section class="hero">
+
+```
 <div class="container">
 
-  <h1>Novyble</h1>
-  <p>Reliable OTA Firmware Delivery over Bluetooth Low Energy</p>
-
-  <a class="btn" href="https://github.com/gopalsorathiya/NovybleSDK">
-    View SDK
-  </a>
-
-  <div class="section">
-    <h2>Features</h2>
-
-```
-<div class="card">
-  Fast BLE scanning and stable connections
-</div>
-
-<div class="card">
-  GATT services and real-time device interaction
-</div>
-
-<div class="card">
-  High-speed OTA firmware updates with resume support
-</div>
-
-<div class="card">
-  Live monitoring and logging system
-</div>
-```
-
+  <div class="badge">
+    Production Grade BLE Infrastructure
   </div>
 
-  <div class="section">
-    <h2>Use Cases</h2>
+  <h1>
+    Reliable BLE Communication<br>
+    Built for Real Devices
+  </h1>
 
-```
-<p>
-  IoT devices • BLE applications • Firmware updates • Device debugging
-</p>
-```
+  <p>
+    Novyble is a high-performance Bluetooth Low Energy platform
+    for iOS focused on stable connections, structured payload
+    communication, OTA firmware delivery, monitoring, and
+    real-world device reliability.
+  </p>
 
-  </div>
+  <div class="hero-buttons">
 
-  <div class="section">
-    <h2>Contact</h2>
+    <a class="btn btn-primary"
+    href="https://github.com/gopalsorathiya/NovybleSDK">
+      View SDK
+    </a>
 
-```
-<p>Email: gopalsorathiya@gmail.com</p>
-```
+    <a class="btn btn-secondary"
+    href="#video">
+      Watch Demo
+    </a>
 
   </div>
 
 </div>
+```
 
-<footer>
-  © 2026 Novyble. All rights reserved.
-</footer>
+  </section>
+
+  <!-- FEATURES -->
+
+  <section>
+
+```
+<div class="container">
+
+  <h2 class="section-title">
+    Built for Production BLE
+  </h2>
+
+  <p class="section-subtitle">
+    Novyble combines BLE infrastructure, protocol management,
+    OTA delivery, monitoring, and logging into a unified platform
+    designed for modern connected devices.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>BLE Stack</h3>
+      <p>
+        Fast scanning, stable connections, GATT operations,
+        notification handling, and optimized BLE communication.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>OTA Engine</h3>
+      <p>
+        Resume-capable firmware delivery with packet validation,
+        retry handling, CRC protection, and SHA256 verification.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Payload Protocol</h3>
+      <p>
+        Structured payload communication layer with ordered packet
+        delivery and optimized throughput for embedded systems.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Monitoring</h3>
+      <p>
+        Real-time logs, throughput metrics, debugging tools,
+        and BLE activity visibility for production environments.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- VIDEO -->
+
+  <section id="video">
+
+```
+<div class="container">
+
+  <h2 class="section-title">
+    Platform Demonstration
+  </h2>
+
+  <p class="section-subtitle">
+    Watch Novyble interacting with BLE devices,
+    monitoring services, and performing OTA updates.
+  </p>
+
+  <div class="video-wrapper">
+
+    <video controls poster="banner.jpg">
+      <source src="demo.mp4" type="video/mp4">
+    </video>
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- STATS -->
+
+  <section>
+
+```
+<div class="container">
+
+  <h2 class="section-title">
+    Optimized for Reliability
+  </h2>
+
+  <div class="stats">
+
+    <div class="stat">
+      <h2>40–80KB/s</h2>
+      <p>OTA Throughput</p>
+    </div>
+
+    <div class="stat">
+      <h2>CRC16</h2>
+      <p>Packet Validation</p>
+    </div>
+
+    <div class="stat">
+      <h2>SHA256</h2>
+      <p>Firmware Integrity</p>
+    </div>
+
+    <div class="stat">
+      <h2>Real-Time</h2>
+      <p>BLE Monitoring</p>
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section>
+
+```
+<div class="container">
+
+  <h2 class="section-title">
+    Contact
+  </h2>
+
+  <p class="section-subtitle">
+    Interested in integrating Novyble into your BLE or IoT platform?
+  </p>
+
+  <div class="hero-buttons">
+
+    <a class="btn btn-primary"
+    href="mailto:gopalsorathiya@gmail.com">
+      Contact Us
+    </a>
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Novyble. All rights reserved.
+  </footer>
 
 </body>
 </html>
